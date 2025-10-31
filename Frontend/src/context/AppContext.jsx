@@ -159,14 +159,32 @@ export const AppContextProvider = ({ children }) => {
           const copy = { ...p };
           const img = copy.IMAGEN ?? copy.imagen ?? copy.image ?? null;
           if (img) {
-            // If it's already a data URL, keep it. Otherwise assume base64 and prefix JPEG data URL.
+            // If it's already a data URL, keep it.
             const str = typeof img === "string" ? img : null;
             if (str) {
               copy.IMAGEN_URL = str.startsWith("data:") ? str : `data:image/jpeg;base64,${str}`;
-            } else if (img instanceof Uint8Array || Array.isArray(img)) {
-              // convert bytes to base64
-              const b64 = btoa(String.fromCharCode(...img));
-              copy.IMAGEN_URL = `data:image/jpeg;base64,${b64}`;
+            } else {
+              // img may be returned as a byte array, Uint8Array, or an object wrapper coming from Oracle driver.
+              try {
+                // common wrappers: { Buffer: [...] }, { Value: [...] }, { data: [...] }
+                const candidate = img.Buffer ?? img.Value ?? img.data ?? img;
+                if (typeof candidate === "string") {
+                  copy.IMAGEN_URL = candidate.startsWith("data:") ? candidate : `data:image/jpeg;base64,${candidate}`;
+                } else if (candidate instanceof Uint8Array || Array.isArray(candidate)) {
+                  const b64 = btoa(String.fromCharCode(...candidate));
+                  copy.IMAGEN_URL = `data:image/jpeg;base64,${b64}`;
+                } else if (candidate && typeof candidate === "object") {
+                  // try to collect numeric values into an array
+                  const vals = Object.values(candidate).filter((v) => typeof v === "number");
+                  if (vals.length > 0) {
+                    const b64 = btoa(String.fromCharCode(...vals));
+                    copy.IMAGEN_URL = `data:image/jpeg;base64,${b64}`;
+                  }
+                }
+              } catch (e) {
+                // ignore conversion error; leave IMAGEN_URL undefined
+                console.warn("[AppContext] failed to convert IMAGEN blob to base64", e);
+              }
             }
           }
           // Normalize price into a predictable numeric field `PRECIO`
@@ -186,8 +204,26 @@ export const AppContextProvider = ({ children }) => {
         }
       });
 
+      // Persist normalized products into context so UI receives data
       setProducts(normalized);
+      // Debug: log info about image fields so we can see what's coming from the backend
       console.log(`${normalized.length} productos cargados`);
+      if (normalized.length > 0) {
+        const sample = normalized.slice(0, 5);
+        sample.forEach((p) => {
+          const raw = p.IMAGEN ?? p.imagen ?? p.image ?? null;
+          console.log(
+            "[AppContext] producto",
+            p.ID_PRODUCTO ?? p.id ?? p.ID ?? "(sin id)",
+            "IMAGEN raw type:",
+            typeof raw,
+            raw && raw.length ? (Array.isArray(raw) ? raw.length : (typeof raw === 'string' ? raw.length : 'unknown')) : 0,
+            "IMAGEN_URL:",
+            !!p.IMAGEN_URL
+          );
+        });
+      }
+      return normalized;
     } catch (error) {
       console.error("Error fetching products:", error);
       setProducts([]);
@@ -219,10 +255,27 @@ export const AppContextProvider = ({ children }) => {
             if (str) {
               copy.imagen_url = str.startsWith("data:") ? str : `data:image/jpeg;base64,${str}`;
               copy.IMAGEN_URL = copy.imagen_url;
-            } else if (img instanceof Uint8Array || Array.isArray(img)) {
-              const b64 = btoa(String.fromCharCode(...img));
-              copy.imagen_url = `data:image/jpeg;base64,${b64}`;
-              copy.IMAGEN_URL = copy.imagen_url;
+            } else {
+              try {
+                const candidate = img.Buffer ?? img.Value ?? img.data ?? img;
+                if (typeof candidate === "string") {
+                  copy.imagen_url = candidate.startsWith("data:") ? candidate : `data:image/jpeg;base64,${candidate}`;
+                  copy.IMAGEN_URL = copy.imagen_url;
+                } else if (candidate instanceof Uint8Array || Array.isArray(candidate)) {
+                  const b64 = btoa(String.fromCharCode(...candidate));
+                  copy.imagen_url = `data:image/jpeg;base64,${b64}`;
+                  copy.IMAGEN_URL = copy.imagen_url;
+                } else if (candidate && typeof candidate === "object") {
+                  const vals = Object.values(candidate).filter((v) => typeof v === "number");
+                  if (vals.length > 0) {
+                    const b64 = btoa(String.fromCharCode(...vals));
+                    copy.imagen_url = `data:image/jpeg;base64,${b64}`;
+                    copy.IMAGEN_URL = copy.imagen_url;
+                  }
+                }
+              } catch (e) {
+                console.warn("[AppContext] failed to convert combo IMAGEN blob to base64", e);
+              }
             }
           }
           // Normalize price for combos too

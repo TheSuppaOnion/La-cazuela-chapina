@@ -146,16 +146,23 @@ const AdminPanel = () => {
         // If an image was selected, upload it separately
         if (imageFile) {
           try {
+            console.log("[AdminPanel] Subiendo imagen para producto", editing.id, { name: imageFile.name, size: imageFile.size, type: imageFile.type });
             const form = new FormData();
-            form.append("image", imageFile);
+            // add filename explicitly
+            form.append("image", imageFile, imageFile.name);
             const up = await fetch(`${API_URL_DIRECT}/products/${editing.id}/image`, {
               method: "POST",
               body: form,
             });
-            if (!up.ok) throw new Error("Image upload failed");
+            if (!up.ok) {
+              const txt = await up.text().catch(() => null);
+              console.error("[AdminPanel] Error subiendo imagen, status:", up.status, txt);
+              throw new Error(txt || "Image upload failed");
+            }
+            console.log("[AdminPanel] Imagen subida correctamente para producto", editing.id);
           } catch (imgErr) {
             console.error(imgErr);
-            toast.error("Error subiendo la imagen");
+            toast.error("Error subiendo la imagen: " + (imgErr?.message ?? ""));
           }
         }
 
@@ -216,16 +223,22 @@ const AdminPanel = () => {
         // If an image was selected, upload it using the same endpoint used for edits
         if (newImageFile) {
           try {
+            console.log("[AdminPanel] Subiendo imagen para nuevo producto", result.productId, { name: newImageFile.name, size: newImageFile.size, type: newImageFile.type });
             const form = new FormData();
-            form.append("image", newImageFile);
+            form.append("image", newImageFile, newImageFile.name);
             const up = await fetch(`${API_URL_DIRECT}/products/${result.productId}/image`, {
               method: "POST",
               body: form,
             });
-            if (!up.ok) throw new Error("Image upload failed");
+            if (!up.ok) {
+              const txt = await up.text().catch(() => null);
+              console.error("[AdminPanel] Error subiendo imagen (nuevo producto), status:", up.status, txt);
+              throw new Error(txt || "Image upload failed");
+            }
+            console.log("[AdminPanel] Imagen subida correctamente para nuevo producto", result.productId);
           } catch (imgErr) {
             console.error(imgErr);
-            toast.error("Producto creado pero fallo la subida de imagen");
+            toast.error("Producto creado pero fallo la subida de imagen: " + (imgErr?.message ?? ""));
           }
         }
         // reset form and refresh list

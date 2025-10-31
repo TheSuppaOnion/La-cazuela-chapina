@@ -4,7 +4,7 @@ import { useAppContext } from "../context/AppContext";
 import ProductCard from "../components/ProductCard";
 
 const AllProducts = () => {
-  const { products, searchQuery, setSearchQuery } = useAppContext();
+  const { products, searchQuery, setSearchQuery, fetchProducts } = useAppContext();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
@@ -13,7 +13,8 @@ const AllProducts = () => {
   });
 
   useEffect(() => {
-  let filtered = Array.isArray(products) ? [...products] : [];
+    console.log("[AllProducts] products length:", Array.isArray(products) ? products.length : typeof products, "searchQuery:", searchQuery);
+    let filtered = Array.isArray(products) ? [...products] : [];
 
     // Filtro por búsqueda — proteger campos que podrían ser undefined
     if (searchQuery && searchQuery.length > 0) {
@@ -42,6 +43,31 @@ const AllProducts = () => {
     setFilteredProducts(filtered);
   }, [products, searchQuery, filters]);
 
+  // If products weren't loaded for some reason, try fetching once on mount
+  useEffect(() => {
+    if (!Array.isArray(products) || products.length === 0) {
+      console.log("[AllProducts] products empty on mount, invoking fetchProducts()");
+      try {
+        fetchProducts && fetchProducts();
+      } catch (e) {
+        console.warn("[AllProducts] fetchProducts failed:", e);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fetchProducts]);
+
+  // If the user performs a search but products are still empty, trigger fetch
+  useEffect(() => {
+    if (searchQuery && (!Array.isArray(products) || products.length === 0)) {
+      console.log("[AllProducts] search triggered and products empty — fetching products");
+      try {
+        fetchProducts && fetchProducts();
+      } catch (e) {
+        console.warn("[AllProducts] fetchProducts failed on search:", e);
+      }
+    }
+  }, [searchQuery, products, fetchProducts]);
+
   const clearFilters = () => {
     setFilters({
       tipo: "",
@@ -57,7 +83,7 @@ const AllProducts = () => {
     <div className="mt-16 flex flex-col">
       <div className="flex flex-col items-end w-max mb-8">
         <p className="text-2xl font-medium uppercase">Todos los Productos</p>
-        <div className="w-16 h-0.5 bg-orange-500 rounded-full"></div>
+    <div className="w-16 h-0.5 bg-sky-500 rounded-full"></div>
       </div>
 
       {/* Barra de búsqueda y filtros */}
@@ -71,14 +97,14 @@ const AllProducts = () => {
               placeholder="Buscar productos por nombre o descripción..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
             />
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-3 border rounded-lg transition ${
               showFilters
-                ? "border-orange-500 text-orange-600"
+                ? "border-sky-500 text-sky-600"
                 : "border-gray-300"
             }`}
           >
@@ -104,7 +130,7 @@ const AllProducts = () => {
                       tipo: e.target.value,
                     }))
                   }
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-sky-500"
                 >
                   <option value="">Todos los tipos</option>
                   <option value="tamal">Tamal</option>
@@ -125,7 +151,7 @@ const AllProducts = () => {
                     setFilters((prev) => ({ ...prev, maxPrice: e.target.value }))
                   }
                   placeholder="Ej: 50"
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-sky-500"
                 />
               </div>
             </div>
@@ -182,7 +208,7 @@ const AllProducts = () => {
           {hasActiveFilters && (
             <button
               onClick={clearFilters}
-              className="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg transition"
+              className="px-6 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition"
             >
               Limpiar filtros
             </button>

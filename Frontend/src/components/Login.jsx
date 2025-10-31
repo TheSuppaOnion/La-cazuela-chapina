@@ -265,7 +265,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="Mínimo 6 caracteres"
-            className="border border-gray-200 rounded w-full p-2 mt-1 outline-orange-500"
+            className="border border-gray-200 rounded w-full p-2 mt-1 outline-sky-500"
             type="password"
             required
             disabled={loading}
@@ -281,7 +281,7 @@ const Login = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               value={confirmPassword}
               placeholder="Repite tu contraseña"
-              className="border border-gray-200 rounded w-full p-2 mt-1 outline-orange-500"
+              className="border border-gray-200 rounded w-full p-2 mt-1 outline-sky-500"
               type="password"
               required
               disabled={loading}

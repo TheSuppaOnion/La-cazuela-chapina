@@ -176,8 +176,8 @@ const EditProfile = ({ onClose, user }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-xl w-full max-w-md max-h-[90vh] overflow-hidden shadow-2xl">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white p-6">
+  {/* Header */}
+  <div className="bg-gradient-to-r from-sky-500 to-sky-700 text-white p-6">
           <div className="flex items-center justify-between">
             <h3 className="text-xl font-bold">Editar Perfil</h3>
             <button
@@ -194,9 +194,9 @@ const EditProfile = ({ onClose, user }) => {
           <div className="flex">
             <button
               onClick={() => setActiveTab("profile")}
-              className={`flex-1 py-3 px-4 text-sm font-medium transition ${
+                  className={`flex-1 py-3 px-4 text-sm font-medium transition ${
                 activeTab === "profile"
-                  ? "border-b-2 border-orange-500 text-orange-600 bg-orange-50"
+                  ? "border-b-2 border-sky-500 text-sky-600 bg-sky-50"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -207,7 +207,7 @@ const EditProfile = ({ onClose, user }) => {
               onClick={() => setActiveTab("security")}
               className={`flex-1 py-3 px-4 text-sm font-medium transition ${
                 activeTab === "security"
-                  ? "border-b-2 border-orange-500 text-orange-600 bg-orange-50"
+                  ? "border-b-2 border-sky-500 text-sky-600 bg-sky-50"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -232,20 +232,20 @@ const EditProfile = ({ onClose, user }) => {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-orange-400 to-orange-600 text-white flex items-center justify-center text-2xl font-bold">
+                      <div className="w-full h-full bg-gradient-to-br from-sky-400 to-sky-600 text-white flex items-center justify-center text-2xl font-bold">
                         {formData.name
                           ? formData.name.charAt(0).toUpperCase()
                           : "U"}
                       </div>
                     )}
                   </div>
-                  <div className="absolute -bottom-2 -right-2 bg-orange-500 rounded-full p-2 shadow-lg">
+                  <div className="absolute -bottom-2 -right-2 bg-sky-500 rounded-full p-2 shadow-lg">
                     <Camera className="w-4 h-4 text-white" />
                   </div>
                 </div>
 
                 <div className="mt-4 flex gap-2 justify-center">
-                  <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg transition text-sm font-medium">
+                  <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-sky-100 hover:bg-sky-200 text-sky-700 rounded-lg transition text-sm font-medium">
                     <Upload className="w-4 h-4" />
                     Subir foto
                     <input
@@ -282,7 +282,7 @@ const EditProfile = ({ onClose, user }) => {
                     type="text"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     placeholder="Tu nombre completo"
                     disabled={loading}
                   />
@@ -299,7 +299,7 @@ const EditProfile = ({ onClose, user }) => {
                     onChange={(e) =>
                       handleInputChange("username", e.target.value)
                     }
-                    className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     placeholder="tu_usuario"
                     disabled={loading}
                   />
@@ -317,7 +317,7 @@ const EditProfile = ({ onClose, user }) => {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     placeholder="tu@email.com"
                     disabled={loading}
                   />
@@ -340,7 +340,7 @@ const EditProfile = ({ onClose, user }) => {
                     onChange={(e) =>
                       handleInputChange("currentPassword", e.target.value)
                     }
-                    className="w-full border border-gray-300 rounded-lg p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full border border-gray-300 rounded-lg p-3 pr-10 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                     placeholder="Tu contraseña actual"
                     disabled={loading}
                   />
@@ -356,7 +356,7 @@ const EditProfile = ({ onClose, user }) => {
                     )}
                   </button>
                 </div>
-                <p className="text-xs text-orange-600 mt-1">
+                <p className="text-xs text-sky-600 mt-1">
                   Requerida para confirmar cualquier cambio
                 </p>
               </div>
@@ -372,7 +372,7 @@ const EditProfile = ({ onClose, user }) => {
                   onChange={(e) =>
                     handleInputChange("newPassword", e.target.value)
                   }
-                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   placeholder="Nueva contraseña (mín 6 caracteres)"
                   disabled={loading}
                 />
@@ -389,7 +389,7 @@ const EditProfile = ({ onClose, user }) => {
                   onChange={(e) =>
                     handleInputChange("confirmPassword", e.target.value)
                   }
-                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent"
                   placeholder="Confirma tu nueva contraseña"
                   disabled={loading}
                 />
@@ -423,7 +423,7 @@ const EditProfile = ({ onClose, user }) => {
             <button
               onClick={handleSave}
               disabled={loading || !hasChanges()}
-              className="flex-1 py-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center justify-center gap-2"
+              className="flex-1 py-3 bg-gradient-to-r from-sky-500 to-sky-700 hover:from-sky-600 hover:to-sky-800 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed font-medium flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>
@@ -446,7 +446,7 @@ const EditProfile = ({ onClose, user }) => {
             </button>
           </div>
           {hasChanges() && (
-            <p className="text-xs text-orange-600 mt-2 text-center">
+            <p className="text-xs text-sky-600 mt-2 text-center">
               Tienes cambios sin guardar
             </p>
           )}

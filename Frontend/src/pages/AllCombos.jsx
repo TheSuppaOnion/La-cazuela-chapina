@@ -4,7 +4,7 @@ import { useAppContext } from "../context/AppContext";
 import ProductCard from "../components/ProductCard";
 
 const AllCombos = () => {
-  const { combos, searchQuery, setSearchQuery } = useAppContext();
+  const { combos, searchQuery, setSearchQuery, fetchCombos } = useAppContext();
   const [filteredCombos, setFilteredCombos] = useState([]);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState({
@@ -12,17 +12,17 @@ const AllCombos = () => {
   });
 
   useEffect(() => {
-    let filtered = [...combos];
+    console.log("[AllCombos] combos length:", Array.isArray(combos) ? combos.length : typeof combos, "searchQuery:", searchQuery);
+    let filtered = Array.isArray(combos) ? [...combos] : [];
 
-    // Filtro por búsqueda
-    if (searchQuery.length > 0) {
-      filtered = filtered.filter(
-        (combo) =>
-          combo.NOMBRE_PRODUCTO.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          combo.DESCRIPCION
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase())
-      );
+    // Filtro por búsqueda — proteger campos que podrían ser undefined
+    if (searchQuery && searchQuery.length > 0) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter((combo) => {
+        const name = (combo?.NOMBRE_PRODUCTO ?? combo?.Name ?? "").toString().toLowerCase();
+        const desc = (combo?.DESCRIPCION ?? combo?.description ?? "").toString().toLowerCase();
+        return name.includes(q) || desc.includes(q);
+      });
     }
 
     // Filtros adicionales
@@ -34,6 +34,18 @@ const AllCombos = () => {
 
     setFilteredCombos(filtered);
   }, [combos, searchQuery, filters]);
+
+  // If combos weren't loaded for some reason, try fetching once on mount
+  useEffect(() => {
+    if (!Array.isArray(combos) || combos.length === 0) {
+      console.log("[AllCombos] combos empty, invoking fetchCombos()");
+      try {
+        fetchCombos && fetchCombos();
+      } catch (e) {
+        console.warn("[AllCombos] fetchCombos failed:", e);
+      }
+    }
+  }, []);
 
   const clearFilters = () => {
     setFilters({
