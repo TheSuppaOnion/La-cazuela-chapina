@@ -5,3 +5,5 @@ Pedidos_ID_Pedido,Productos_ID_Producto,Cantidad,Precio_unitario,Personalizacion
 4,3,5,5.00,"{""topping"":""canela""}"
 5,1,5,3.50,"{""picante"":""chapin""}"
 5,4,2,6.00,"{""tamano"":""12oz""}"
+6,4,1,22.00,
+6,3,1,15.00,

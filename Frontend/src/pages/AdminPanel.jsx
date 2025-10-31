@@ -3,13 +3,17 @@ import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
 
 const AdminPanel = () => {
-  const { user, products, fetchProducts, API_URL_DIRECT, createProduct } = useAppContext();
+  const { user, products, fetchProducts, API_URL_DIRECT, createProduct, combos } = useAppContext();
   const [activeTab, setActiveTab] = useState("dashboard");
   const [localProducts, setLocalProducts] = useState(products || []);
   const [editing, setEditing] = useState(null);
   const [saving, setSaving] = useState(false);
   const [analytics, setAnalytics] = useState(null);
   const [imageFile, setImageFile] = useState(null);
+  const [llmPrompt, setLlmPrompt] = useState("");
+  const [llmResponse, setLlmResponse] = useState(null);
+  const [llmLoading, setLlmLoading] = useState(false);
+  const [llmParsed, setLlmParsed] = useState(null);
 
   // --- Add single product/combo form state & handlers (moved here to avoid conditional hooks) ---
   const [newProduct, setNewProduct] = useState({
@@ -390,11 +394,11 @@ const AdminPanel = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="p-4 bg-white border rounded-lg">
             <p className="text-sm text-gray-600">Ventas diarias</p>
-            <p className="text-2xl font-bold">{analytics?.dailySales ?? "N/A"}</p>
+            <p className="text-2xl font-bold">{analytics?.dailySales !== undefined ? `Q${Number(analytics.dailySales).toFixed(2)}` : "N/A"}</p>
           </div>
           <div className="p-4 bg-white border rounded-lg">
             <p className="text-sm text-gray-600">Ventas mensuales</p>
-            <p className="text-2xl font-bold">{analytics?.monthlySales ?? "N/A"}</p>
+            <p className="text-2xl font-bold">{analytics?.monthlySales !== undefined ? `Q${Number(analytics.monthlySales).toFixed(2)}` : "N/A"}</p>
           </div>
           <div className="p-4 bg-white border rounded-lg">
             <p className="text-sm text-gray-600">Productos totales</p>
@@ -405,20 +409,36 @@ const AdminPanel = () => {
             <p className="text-sm text-gray-600">Tamales más vendidos</p>
             <ul className="mt-2 list-disc pl-5">
               {analytics?.topTamales?.length ? (
-                  analytics.topTamales.map((t, i) => (
-                    <li key={(t?.name ?? "top") + "-" + i}>{t.name} — {t.sales}</li>
-                  ))
-                ) : (
-                  topProducts.length ? topProducts.map((p, i) => (
-                    <li key={getId(p) + "-" + i}>{getName(p)} — {p.sales ?? p.ventas ?? p.VENTAS ?? 0}</li>
-                  )) : <li>No hay datos</li>
-                )}
+                analytics.topTamales.map((t, i) => (
+                  <li key={(t?.name ?? "top") + "-" + i}>{t.name} — {t.sales}</li>
+                ))
+              ) : (
+                topProducts.length ? topProducts.map((p, i) => (
+                  <li key={getId(p) + "-" + i}>{getName(p)} — {p.sales ?? p.ventas ?? p.VENTAS ?? 0}</li>
+                )) : <li>No hay datos</li>
+              )}
             </ul>
           </div>
 
           <div className="p-4 bg-white border rounded-lg">
             <p className="text-sm text-gray-600">Bebidas por franja horaria</p>
-            <p className="text-sm text-gray-500">{analytics?.drinksBySlot ? "Disponible" : "N/D"}</p>
+            {analytics?.drinksBySlot && analytics.drinksBySlot.length ? (
+              <div className="text-sm text-gray-700">
+                {analytics.drinksBySlot.map((d, i) => {
+                  // Accept different field names depending on DB driver
+                  const hour = d.HOUR ?? d.hour ?? d.HOUR_ ?? d.hour;
+                  const count = d.COUNT ?? d.count ?? d.CNT ?? d.count;
+                  return (
+                    <div key={"slot-" + i} className="flex justify-between">
+                      <span>Hora {hour}</span>
+                      <span>{count}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p className="text-sm text-gray-500">N/D</p>
+            )}
           </div>
 
           <div className="p-4 bg-white border rounded-lg">
@@ -432,9 +452,146 @@ const AdminPanel = () => {
 
           <div className="p-4 bg-white border rounded-lg">
             <p className="text-sm text-gray-600">Utilidades por línea</p>
-            <p className="text-sm text-gray-500">{analytics?.profitByLine ? "Disponible" : "N/D"}</p>
+            {analytics?.profitByLine && analytics.profitByLine.length ? (
+              <div className="text-sm text-gray-700">
+                {analytics.profitByLine.map((r, i) => (
+                  <div key={"profit-" + i} className="flex justify-between">
+                    <span>{r.LINE ?? r.line ?? r.linea ?? r.line}</span>
+                    <span>Q{Number(r.PROFIT ?? r.profit ?? 0).toFixed(2)}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-gray-500">N/D</p>
+            )}
           </div>
 
+          <div className="p-4 bg-white border rounded-lg">
+            <p className="text-sm text-gray-600">Desperdicio materia prima (hoy)</p>
+            <p className="text-2xl font-bold">{analytics?.dailyWaste !== undefined ? `Q${Number(analytics.dailyWaste).toFixed(2)}` : 'N/D'}</p>
+            <p className="text-sm text-gray-500">Mensual: {analytics?.monthlyWaste !== undefined ? `Q${Number(analytics.monthlyWaste).toFixed(2)}` : 'N/D'}</p>
+            {analytics?.wasteByIngredient && analytics.wasteByIngredient.length ? (
+              <div className="mt-3 text-sm text-gray-700">
+                <div className="font-medium mb-1">Top ingredientes por costo de merma</div>
+                {analytics.wasteByIngredient.slice(0,5).map((w, i) => (
+                  <div key={"w-"+i} className="flex justify-between">
+                    <span>{w.NAME ?? w.name ?? w.NOMBRE_INVENTARIO ?? w.nombre_inventario}</span>
+                    <span>Q{Number(w.COSTO_MERMA ?? w.costo_merma ?? w.COSTO_MERMA ?? 0).toFixed(2)}</span>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+        </div>
+      )}
+
+      {/* LLM Recommendations card */}
+      {activeTab === "dashboard" && (
+        <div className="mb-8">
+          <div className="p-4 bg-white border rounded-lg max-w-4xl mx-auto">
+            <h3 className="font-medium mb-2">Asistente de recomendaciones (LLM)</h3>
+            <p className="text-sm text-gray-600 mb-3">Pide recomendaciones basadas en las estadísticas actuales. Deja el prompt vacío para una sugerencia automática.</p>
+            <textarea value={llmPrompt} onChange={(e) => setLlmPrompt(e.target.value)} placeholder="Escribe una petición (ej: sugerir combos para aumentar ventas de tamales)..." className="w-full border p-2 rounded mb-3" rows={3} />
+            <div className="flex items-center gap-2">
+              <button disabled={llmLoading} onClick={async () => {
+                try {
+                  setLlmLoading(true);
+
+                  // Build structured context for the admin LLM: include analytics + top combos/products
+                  const normalize = (it) => ({
+                    id: it?.ID_Producto ?? it?.id ?? it?.Id ?? null,
+                    name: it?.Nombre_producto ?? it?.name ?? it?.title ?? null,
+                    type: it?.Tipo_producto ?? it?.type ?? null,
+                    price: it?.Precio_base ?? it?.price ?? null,
+                    attributes: it?.Atributos ?? it?.attributes ?? null,
+                    available: it?.Disponible ?? it?.available ?? null,
+                  });
+
+                  const topCombos = (combos || []).slice(0,8).map(normalize);
+                  const topProducts = (localProducts || []).slice(0,12).map(normalize).slice(0,8);
+
+                  const contextObj = {
+                    analytics: analytics ?? null,
+                    topCombos,
+                    topProducts,
+                    totals: { totalProducts: localProducts.length }
+                  };
+
+                  const systemMessage = {
+                    role: 'system',
+                    content: `Eres un asesor administrativo para una taquería. Usa SOLO el contexto JSON provisto y NO inventes métricas ni nombres que no estén presentes.
+Responde en ESPAÑOL y devuélveme ÚNICAMENTE JSON válido con esta estructura:
+{
+  "insights": [{ "area": "ventas|merma|precio|marketing", "message": string }],
+  "recommendations": [{ "title": string, "impactEstimate": number|null, "steps": [string] }]
+}
+No incluyas tablas Markdown ni texto fuera del JSON. Si no puedes calcular una métrica, usa null en lugar de inventar un número.`
+                  };
+
+                  const userText = llmPrompt && llmPrompt.trim().length ? llmPrompt.trim() : 'Genera 3 recomendaciones accionables para aumentar ventas y reducir merma basadas en el contexto proporcionado.';
+                  const userMessage = { role: 'user', content: `Contexto: ${JSON.stringify(contextObj)}\nPetición: ${userText}` };
+
+                  const messagesPayload = [systemMessage, userMessage];
+
+                  const res = await fetch(`${API_URL_DIRECT}/llm`, {
+                    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: messagesPayload })
+                  });
+                  const data = await res.json();
+                  const rawContent = data?.content ?? JSON.stringify(data?.raw ?? data);
+                  // Try parse JSON
+                  try {
+                    const parsed = typeof rawContent === 'string' ? JSON.parse(rawContent) : rawContent;
+                    setLlmParsed(parsed);
+                    setLlmResponse('Respuesta recibida (ver vista resumida)');
+                  } catch (e) {
+                    setLlmParsed(null);
+                    setLlmResponse(typeof rawContent === 'string' ? rawContent : JSON.stringify(rawContent, null, 2));
+                  }
+                } catch (err) {
+                  setLlmResponse('Error en la solicitud LLM: ' + (err.message || err));
+                } finally { setLlmLoading(false); }
+              }} className="px-3 py-2 bg-sky-500 text-white rounded">{llmLoading ? 'Procesando...' : 'Pedir recomendación'}</button>
+              <button onClick={() => { setLlmPrompt(''); setLlmResponse(null); }} className="px-3 py-2 border rounded">Limpiar</button>
+            </div>
+
+            {llmResponse && (
+              <div className="mt-4">
+                <div className="mb-3 text-sm text-gray-700">{llmResponse}</div>
+                {llmParsed ? (
+                  <div className="space-y-3">
+                    {Array.isArray(llmParsed.insights) && (
+                      <div className="p-3 bg-white border rounded">
+                        <div className="font-medium mb-2">Insights</div>
+                        {llmParsed.insights.map((ins, i) => (
+                          <div key={i} className="text-sm text-gray-700 mb-1"><strong>{ins.area}</strong>: {ins.message}</div>
+                        ))}
+                      </div>
+                    )}
+
+                    {Array.isArray(llmParsed.recommendations) && (
+                      <div className="p-3 bg-white border rounded">
+                        <div className="font-medium mb-2">Recomendaciones</div>
+                        {llmParsed.recommendations.map((r, i) => (
+                          <div key={i} className="mb-2">
+                            <div className="font-medium">{r.title}</div>
+                            <div className="text-sm text-gray-700">{r.description}</div>
+                            {Array.isArray(r.steps) && (
+                              <ol className="list-decimal pl-5 text-sm text-gray-700 mt-1">
+                                {r.steps.map((s, si) => <li key={si}>{s}</li>)}
+                              </ol>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <pre className="mt-2 p-3 bg-gray-50 border rounded text-sm whitespace-pre-wrap">{llmResponse}</pre>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       )}
 

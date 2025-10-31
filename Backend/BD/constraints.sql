@@ -26,6 +26,13 @@ ADD CONSTRAINT chk_tipo_movimiento CHECK (Tipo IN ('entrada', 'salida', 'merma')
 ALTER TABLE Pedidos
 ADD CONSTRAINT chk_estado_pedido CHECK (Estado IN ('pendiente', 'preparando', 'entregado', 'cancelado'));
 
+-- Constraints para RELACIÓN PRODUCTO - INGREDIENTE (Prod_Ingred)
+ALTER TABLE Prod_Ingred
+ADD CONSTRAINT Prod_Ingred_Cant_CHK CHECK (Cantidad > 0);
+
+ALTER TABLE Prod_Ingred
+ADD CONSTRAINT Prod_Ingred_UQ UNIQUE (Productos_ID_Producto, Inv_ID_Inv);
+
 -- -----------------------------------------------------------------
 -- Secuencias y triggers para generar IDs correlativos
 -- -----------------------------------------------------------------
@@ -36,7 +43,9 @@ CREATE SEQUENCE seq_mov_inventario START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE seq_pedidos START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE seq_productos START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE seq_productos_pedido START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE seq_prod_ingred START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 CREATE SEQUENCE seq_usuarios START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
+CREATE SEQUENCE seq_unidad START WITH 1 INCREMENT BY 1 NOCACHE NOCYCLE;
 
 -- Triggers BEFORE INSERT para asignar el siguiente valor de la secuencia
 CREATE OR REPLACE TRIGGER trg_inv_bi
@@ -89,12 +98,32 @@ BEGIN
 END;
 /
 
+CREATE OR REPLACE TRIGGER trg_prod_ingred_bi
+BEFORE INSERT ON Prod_Ingred
+FOR EACH ROW
+BEGIN
+    IF :NEW.ID_PI IS NULL THEN
+        SELECT seq_prod_ingred.NEXTVAL INTO :NEW.ID_PI FROM dual;
+    END IF;
+END;
+/
+
 CREATE OR REPLACE TRIGGER trg_usuarios_bi
 BEFORE INSERT ON Usuarios
 FOR EACH ROW
 BEGIN
 	IF :NEW.ID_Usuario IS NULL THEN
 		SELECT seq_usuarios.NEXTVAL INTO :NEW.ID_Usuario FROM dual;
+	END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER trg_unidad_bi
+BEFORE INSERT ON Unidad
+FOR EACH ROW
+BEGIN
+	IF :NEW.ID_Unidad IS NULL THEN
+		SELECT seq_unidad.NEXTVAL INTO :NEW.ID_Unidad FROM dual;
 	END IF;
 END;
 /

@@ -401,13 +401,81 @@ app.MapPost("/api/auth/register", async (IDbConnection db, HttpRequest req) =>
     }
 });
 
-// LLM integration with OpenRouter (basic example)
-app.MapPost("/api/llm", async (HttpClient httpClient, string prompt) =>
+// LLM integration with OpenRouter — improved endpoint
+// Accepts JSON body: { "prompt": "text" } or { "model": "..", "messages": [ {role, content}, ... ] }
+app.MapPost("/api/llm", async (HttpRequest req, IHttpClientFactory httpFactory) =>
 {
-    var request = new { model = "openai/gpt-3.5-turbo", messages = new[] { new { role = "user", content = prompt } } };
-    var response = await httpClient.PostAsJsonAsync("https://openrouter.ai/api/v1/chat/completions", request);
-    var result = await response.Content.ReadFromJsonAsync<JsonElement>();
-    return result.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
+    try
+    {
+        var body = await req.ReadFromJsonAsync<JsonElement>();
+
+        string model = "openai/gpt-oss-20b:free";
+        JsonElement messagesElem = default;
+        bool hasMessages = false;
+
+        if (body.ValueKind == JsonValueKind.Object)
+        {
+            if (body.TryGetProperty("model", out var m) && m.ValueKind == JsonValueKind.String)
+                model = m.GetString() ?? model;
+
+            if (body.TryGetProperty("messages", out var msgs) && msgs.ValueKind == JsonValueKind.Array)
+            {
+                messagesElem = msgs;
+                hasMessages = true;
+            }
+            else if (body.TryGetProperty("prompt", out var p) && p.ValueKind == JsonValueKind.String)
+            {
+                // build simple messages array from prompt
+                var prompt = p.GetString() ?? "";
+                var arr = JsonSerializer.SerializeToElement(new[] { new { role = "user", content = prompt } });
+                messagesElem = arr;
+                hasMessages = true;
+            }
+        }
+
+        if (!hasMessages) return Results.BadRequest(new { error = "Missing 'prompt' or 'messages' in request body" });
+
+        var apiKey = Environment.GetEnvironmentVariable("OPENROUTER_API_KEY") ?? Environment.GetEnvironmentVariable("OPENAI_API_KEY") ?? string.Empty;
+        if (string.IsNullOrEmpty(apiKey)) return Results.Problem("OPENROUTER_API_KEY (or OPENAI_API_KEY) is not configured in environment variables", statusCode: 500);
+
+        var client = httpFactory.CreateClient();
+        client.DefaultRequestHeaders.Clear();
+        client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
+        // Build request object
+        object? messagesObj = JsonSerializer.Deserialize<object>(messagesElem.GetRawText()) ?? new object[0];
+        var requestObj = new Dictionary<string, object?>
+        {
+            ["model"] = model,
+            ["messages"] = messagesObj
+        };
+
+        var response = await client.PostAsJsonAsync("https://openrouter.ai/api/v1/chat/completions", requestObj);
+        if (!response.IsSuccessStatusCode)
+        {
+            var errText = await response.Content.ReadAsStringAsync();
+            return Results.Problem($"OpenRouter error: {response.StatusCode} - {errText}", statusCode: 502);
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+        // Try to extract assistant text from response
+        try
+        {
+            var choice = result.GetProperty("choices")[0];
+            var message = choice.GetProperty("message");
+            var content = message.GetProperty("content").GetString();
+            return Results.Ok(new { success = true, content, raw = result });
+        }
+        catch
+        {
+            return Results.Ok(new { success = true, raw = result });
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
 });
 
 // Aggregated admin analytics endpoint used by the frontend admin panel
@@ -446,12 +514,52 @@ app.MapGet("/api/admin/analytics", async (IDbConnection db) =>
         const string sqlNon = "SELECT COUNT(*) FROM PRODUCTOS WHERE Tipo_producto IN ('tamal', 'bebida') AND (Atributos NOT LIKE '%picante%' OR Atributos IS NULL)";
         var nonSpicy = await db.ExecuteScalarAsync<int>(sqlNon);
 
+        // COGS por producto (suma de ingredientes * costo_unitario)
+        const string sqlCogsByProduct = @"
+            SELECT p.ID_Producto, p.Nombre_producto,
+                   NVL(SUM(pi.Cantidad * inv.Costo_unitario),0) AS COGS_PER_UNIT
+            FROM Productos p
+            LEFT JOIN Prod_Ingred pi ON pi.Productos_ID_Producto = p.ID_Producto
+            LEFT JOIN Inv inv ON inv.ID_Inv = pi.Inv_ID_Inv
+            GROUP BY p.ID_Producto, p.Nombre_producto";
+        var cogsByProduct = await db.QueryAsync(sqlCogsByProduct);
+
+        // Profit by line using COGS from Prod_Ingred
         const string sqlProfit = @"
-            SELECT p.Tipo_producto AS line, SUM(pp.Precio_unitario * pp.Cantidad) AS profit
+            WITH cogs AS (
+              SELECT pi.Productos_ID_Producto AS prod_id, NVL(SUM(pi.Cantidad * inv.Costo_unitario),0) AS cogs_per_unit
+              FROM Prod_Ingred pi
+              JOIN Inv inv ON inv.ID_Inv = pi.Inv_ID_Inv
+              GROUP BY pi.Productos_ID_Producto
+            )
+            SELECT p.Tipo_producto AS line,
+                   NVL(SUM(pp.Precio_unitario * pp.Cantidad),0) AS revenue,
+                   NVL(SUM(cogs.cogs_per_unit * pp.Cantidad),0) AS cost,
+                   NVL(SUM(pp.Precio_unitario * pp.Cantidad),0) - NVL(SUM(cogs.cogs_per_unit * pp.Cantidad),0) AS profit
             FROM Productos_Pedido pp
             JOIN Productos p ON pp.Productos_ID_Producto = p.ID_Producto
+            LEFT JOIN cogs ON cogs.prod_id = pp.Productos_ID_Producto
             GROUP BY p.Tipo_producto";
         var profit = await db.QueryAsync(sqlProfit);
+
+        // Desperdicio (merma) por ingrediente — sumar cantidad * costo por inventario
+        const string sqlWasteByIngredient = @"
+            SELECT inv.ID_Inv AS id, inv.Nombre_inventario AS name,
+                   NVL(SUM(mi.Cantidad),0) AS cantidad_merma,
+                   NVL(SUM(mi.Cantidad * inv.Costo_unitario),0) AS costo_merma
+            FROM Mov_Inventario mi
+            JOIN Inv inv ON mi.Inv_ID_Inv = inv.ID_Inv
+            WHERE mi.Tipo = 'merma'
+            GROUP BY inv.ID_Inv, inv.Nombre_inventario
+            ORDER BY costo_merma DESC";
+        var wasteByIngredient = await db.QueryAsync(sqlWasteByIngredient);
+
+        // Desperdicio total (diario / mensual) — reutilizamos Mov_Inventario
+        const string sqlWasteDaily = "SELECT NVL(SUM(Cantidad * Costo), 0) FROM Mov_Inventario WHERE Tipo = 'merma' AND TRUNC(Fecha) = TRUNC(SYSDATE)";
+        var dailyWaste = await db.ExecuteScalarAsync<decimal>(sqlWasteDaily);
+
+        const string sqlWasteMonthly = "SELECT NVL(SUM(Cantidad * Costo), 0) FROM Mov_Inventario WHERE Tipo = 'merma' AND TRUNC(Fecha,'MM') = TRUNC(SYSDATE,'MM')";
+        var monthlyWaste = await db.ExecuteScalarAsync<decimal>(sqlWasteMonthly);
 
         return Results.Ok(new
         {
@@ -460,7 +568,11 @@ app.MapGet("/api/admin/analytics", async (IDbConnection db) =>
             topTamales = top,
             drinksBySlot = drinks,
             spicyRatio = new { spicy, nonSpicy },
-            profitByLine = profit
+            profitByLine = profit,
+            cogsByProduct = cogsByProduct,
+            wasteByIngredient = wasteByIngredient,
+            dailyWaste = dailyWaste,
+            monthlyWaste = monthlyWaste
         });
     }
     catch (Exception ex)

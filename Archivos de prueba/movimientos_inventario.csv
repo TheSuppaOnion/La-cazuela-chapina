@@ -9,3 +9,6 @@ Inv_ID_Inv,Pedidos_ID_Pedido,Tipo,Cantidad,Costo,Fecha,Razon
 7,3,salida,5.00,5.00,2025-10-03,"Venta pedido 3"
 1,1,entrada,20.00,50.00,2025-09-30,"Reposición"
 3,1,merma,1.00,8.00,2025-10-01,"Deterioro"
+3,6,merma,0.20,40.00,2025-10-30,"Merma por corte en preparación"
+1,6,salida,0.40,3.00,2025-10-30,"Consumo pedido 6"
+5,6,salida,0.30,0.50,2025-10-30,"Consumo pedido 6"

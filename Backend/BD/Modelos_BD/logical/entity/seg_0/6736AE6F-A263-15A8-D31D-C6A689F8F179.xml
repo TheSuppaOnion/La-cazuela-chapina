@@ -4,7 +4,7 @@
 <createdTime>2025-10-30 01:26:58 UTC</createdTime>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,7 +21,7 @@
 <comment><![CDATA[Correlativo de usuario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -34,7 +34,7 @@
 <comment><![CDATA[Nombre del usuario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -48,7 +48,7 @@
 <comment><![CDATA[Correo del usuario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -62,7 +62,7 @@
 <comment><![CDATA[Hash contraseña encriptada]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -76,7 +76,7 @@
 <comment><![CDATA[Telefono del usuario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -90,7 +90,7 @@
 <comment><![CDATA[Dirección del usuario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -104,7 +104,7 @@
 <comment><![CDATA[Rol en el sistema]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -118,11 +118,25 @@
 <comment><![CDATA[Fecha de registro usuario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Imagen" id="2961589D-1F24-A300-BAB3-6102DEBECAA0">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:36:19 UTC</createdTime>
+<comment><![CDATA[Imagen de usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT010</logicalDatatype>
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 </attributes>
@@ -132,7 +146,7 @@
 <createdTime>2025-10-30 01:36:12 UTC</createdTime>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="CE37757E-6952-23D6-EC5D-163E86AC06B8" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

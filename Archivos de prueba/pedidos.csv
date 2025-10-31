@@ -1,6 +1,7 @@
-Usuarios_ID_Usuario,Precio_total,Estado,Fecha_pedido,Fecha_entrega,Notas
-1,45.00,entregado,2025-10-01,2025-10-01,"Entrega en zona 1"
-2,120.00,preparando,2025-10-02,2025-10-02,"Pedido grande"
-4,50.00,pendiente,2025-10-03,2025-10-03,"Combo estacional"
-5,25.00,entregado,2025-10-04,2025-10-04,"Pedido pequeño"
-1,30.00,entregado,2025-10-05,2025-10-05,"Repetidor"
+Pedidos_ID_Pedido,Usuarios_ID_Usuario,Precio_total,Estado,Fecha_pedido,Fecha_entrega,Notas
+1,1,45.00,entregado,2025-10-01,2025-10-01,"Entrega en zona 1"
+2,2,120.00,preparando,2025-10-02,2025-10-02,"Pedido grande"
+3,4,50.00,pendiente,2025-10-03,2025-10-03,"Combo estacional"
+4,5,25.00,entregado,2025-10-04,2025-10-04,"Pedido pequeño"
+5,1,30.00,entregado,2025-10-05,2025-10-05,"Repetidor"
+6,2,37.00,entregado,2025-10-30,2025-10-30,"Pedido de prueba: combo + bebida"
