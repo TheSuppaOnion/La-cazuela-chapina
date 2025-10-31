@@ -4,7 +4,7 @@
 <createdTime>2025-10-30 01:27:10 UTC</createdTime>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,7 +21,7 @@
 <comment><![CDATA[Correlativo producto]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -34,7 +34,7 @@
 <comment><![CDATA[Nombre del producto]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -48,7 +48,7 @@
 <comment><![CDATA[Tipo de producto, bebida, tamal, combo]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -62,7 +62,7 @@
 <comment><![CDATA[Precio del producto]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -77,7 +77,7 @@
 <comment><![CDATA[Es o no personalizable]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -91,7 +91,7 @@
 <comment><![CDATA[JSON para personalización]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -105,7 +105,7 @@
 <comment><![CDATA[Si hay o no disponibilidad]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -120,7 +120,7 @@
 <comment><![CDATA[Imagen del producto]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -135,7 +135,7 @@
 <createdTime>2025-10-30 01:42:41 UTC</createdTime>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="450AB631-0171-541F-EF53-F9A51C30BB78" value="true"/>
+<item key="F7F39516-AB4B-503D-09DD-EA5C8353CC77" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

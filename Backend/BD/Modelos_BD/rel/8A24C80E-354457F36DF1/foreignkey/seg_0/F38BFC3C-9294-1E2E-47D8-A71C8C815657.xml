@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F38BFC3C-9294-1E2E-47D8-A71C8C815657" containerWithKeyObject="C5DF4079-AF94-BFA8-49FC-E70E8F42FA53" localFKIndex="D516B0DE-E639-F18D-FD4B-1D588BA99135" name="Mov_Inventario_Inv_FK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<generatorID>DA842EE8-FC81-47B2-73EF-6A3BD14E880B</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<referredTableLongName>Inv</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>7D06114A-4577-95FF-A568-ADB4937F8816</referredTableID>
+<keyObject>CE918419-68F7-1D10-10BC-0CF436FE1B08</keyObject>
+<referredKeyID>CE918419-68F7-1D10-10BC-0CF436FE1B08</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>ID_Inv</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

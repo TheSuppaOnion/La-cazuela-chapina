@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F9E14610-6CEB-52E3-2A96-418EB2DDA280" name="Inv">
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="7D06114A-4577-95FF-A568-ADB4937F8816" name="Inv">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <generatorID>8DE487A8-635A-8390-6779-110DF1A01020</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <parsed>true</parsed>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="ID_Inv" id="DA558BD2-69A2-239E-4F26-36F7662096C4">
+<Column name="ID_Inv" id="99D4AF4C-C637-4EF2-4802-2098EDC6F83A">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Correlativo de inventario]]></comment>
 <generatorID>0EA0E19E-5C03-3B76-B687-14AED6A50EFE</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -20,9 +20,9 @@
 <ownDataTypeParameters>,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Nombre_inventario" id="C1D18EDF-1DF5-BB06-0EF2-960B2488A81B">
+<Column name="Nombre_inventario" id="836FDD8A-3CC1-210A-5897-9D1582DAF41C">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Nombre de la materia prima]]></comment>
 <generatorID>4AF83352-36EF-7893-4F2A-C1E623600C07</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -33,9 +33,9 @@
 <ownDataTypeParameters>150,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Categoria" id="D0D37437-B412-D045-3A7C-541A6C3270CD">
+<Column name="Categoria" id="CFBD9332-5D13-17F3-4C68-FB5AF5B129F0">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Materia prima, empaques o combustible]]></comment>
 <generatorID>AF2BBF64-CE07-0D3C-68EB-DAAD45B343FC</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -46,22 +46,25 @@
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Unidad" id="D0C4CC02-40AD-3E96-B1F3-2DFA6B1F733A">
+<Column name="Unidad_ID_Unidad" id="A0DF99BB-8C0B-49EB-A923-3829D68D9DFB">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
-<comment><![CDATA[Peso de la materia prima]]></comment>
-<generatorID>410DA40A-928D-7E34-EC9F-217407C89E6B</generatorID>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<comment><![CDATA[Correlativo unidad]]></comment>
+<generatorID>4DCFF7B6-305E-CB9F-0C68-BB74CD53241D</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
 <autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B3F13BAF-5604-B1BB-4AB0-636CC7F21B75" referredColumn="51A01D48-129C-E728-FED3-F8AC1FAC255A"/>
+</associations>
 </Column>
-<Column name="Stock_actual" id="B527E4AF-F2F7-155E-371F-432D72D9C159">
+<Column name="Stock_actual" id="F2AB7669-21A0-88C9-F3E5-6AEAE0C77D83">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Disponible actualmente]]></comment>
 <generatorID>0B55951F-DAF0-9133-6E79-B1152F77AE67</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -73,9 +76,9 @@
 <ownDataTypeParameters>,10,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Costo_unitario" id="1BBA809F-13FA-C140-619F-0CEF7690B763">
+<Column name="Costo_unitario" id="E0ED71EE-608A-8BE2-00B0-F8E214C8F150">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Costo de la materia prima]]></comment>
 <generatorID>7AC496D4-9F11-D1F4-2DCC-EE3DF890ED5C</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -87,9 +90,9 @@
 <ownDataTypeParameters>,10,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Stock_minimo" id="0E96B244-8B4F-A0BD-ECA1-B9CDA0B2E2F3">
+<Column name="Stock_minimo" id="25E40869-8E55-55F0-D0C0-683FF661ABEA">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Se alerta si baja de esto]]></comment>
 <generatorID>F92C963F-FFD1-2AD5-D69D-23A7A7DFDF25</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -102,9 +105,9 @@
 <ownDataTypeParameters>,10,2</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="Proveedor" id="28647B76-929E-17C3-7627-91BAC76356EC">
+<Column name="Proveedor" id="44B0C670-69C1-5E4A-80B2-9B9C2BE3FD0A">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <comment><![CDATA[Proveedor de la materia prima]]></comment>
 <generatorID>CB026356-F224-A24A-9511-2744C6BF35F8</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
@@ -118,16 +121,27 @@
 </Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
-<ind_PK_UK id="D43DC26A-F34E-D5C7-735D-3D9B4AFD71E1" name="Inv_PK">
+<ind_PK_UK id="CE918419-68F7-1D10-10BC-0CF436FE1B08" name="Inv_PK">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
 <generatorID>A9F1EC15-524F-A629-82A4-46B4AA73637A</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <pk>true</pk>
 <indexState>Primary Constraint</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="DA558BD2-69A2-239E-4F26-36F7662096C4"/>
+<colUsage columnID="99D4AF4C-C637-4EF2-4802-2098EDC6F83A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="79B8AB14-52F2-80BB-0D33-6A9714C7FA34" name="Inv_Unidad_FK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<generatorID>B15ACC3C-8EC9-54F7-1D6D-9BAAE52FC87D</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0DF99BB-8C0B-49EB-A923-3829D68D9DFB"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

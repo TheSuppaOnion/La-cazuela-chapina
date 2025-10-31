@@ -4,7 +4,7 @@
 <createdTime>2025-10-30 01:27:39 UTC</createdTime>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <adequatelyNormalized>NO</adequatelyNormalized>
 <expectedVolumes>0</expectedVolumes>
@@ -21,7 +21,7 @@
 <comment><![CDATA[Correlativo de inventario]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -34,7 +34,7 @@
 <comment><![CDATA[Nombre de la materia prima]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -48,7 +48,7 @@
 <comment><![CDATA[Materia prima, empaques o combustible]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -56,19 +56,20 @@
 <dataTypeSize>50</dataTypeSize>
 <ownDataTypeParameters>50,,</ownDataTypeParameters>
 </Attribute>
-<Attribute name="Unidad" id="410DA40A-928D-7E34-EC9F-217407C89E6B">
+<Attribute name="ID_Unidad" id="4DCFF7B6-305E-CB9F-0C68-BB74CD53241D">
 <createdBy>Bismarck Romero</createdBy>
-<createdTime>2025-10-30 01:51:15 UTC</createdTime>
-<comment><![CDATA[Peso de la materia prima]]></comment>
+<createdTime>2025-10-31 05:04:17 UTC</createdTime>
+<comment><![CDATA[Correlativo unidad]]></comment>
+<generatorID>B15ACC3C-8EC9-54F7-1D6D-9BAAE52FC87D</generatorID>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
+<referedAttribute>4D4DD17D-449A-F7EA-8327-39D752348AB6</referedAttribute>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>20</dataTypeSize>
-<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
 </Attribute>
 <Attribute name="Stock_actual" id="0B55951F-DAF0-9133-6E79-B1152F77AE67">
 <createdBy>Bismarck Romero</createdBy>
@@ -76,7 +77,7 @@
 <comment><![CDATA[Disponible actualmente]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -91,7 +92,7 @@
 <comment><![CDATA[Costo de la materia prima]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -106,7 +107,7 @@
 <comment><![CDATA[Se alerta si baja de esto]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -122,7 +123,7 @@
 <comment><![CDATA[Proveedor de la materia prima]]></comment>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
@@ -138,7 +139,7 @@
 <createdTime>2025-10-30 01:50:32 UTC</createdTime>
 <ownerDesignName>Modelos_BD</ownerDesignName>
 <engineerTo>
-<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
 </engineerTo>
 <pk>true</pk>
 <usedAttributes>

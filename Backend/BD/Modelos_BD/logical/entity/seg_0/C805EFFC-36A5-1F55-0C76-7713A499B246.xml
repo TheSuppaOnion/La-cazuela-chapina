@@ -1,0 +1,106 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C805EFFC-36A5-1F55-0C76-7713A499B246" name="Prod_Ingred">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:10:44 UTC</createdTime>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_PI" id="99D480D7-1876-39B7-DA6E-BE680F4ACC6D">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:11:21 UTC</createdTime>
+<comment><![CDATA[Correlativo producto ingrediente]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_Producto" id="97D7240F-12C1-0855-62DD-4457DD933086">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:20:00 UTC</createdTime>
+<comment><![CDATA[Correlativo producto]]></comment>
+<generatorID>B0E60C16-9FC9-4A98-B845-F22F9B03EA75</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<referedAttribute>4A6D5E93-06A2-92AF-B8AA-D7A380FDA5F9</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_Inv" id="5CBAC642-6696-41B4-928E-CEAAF3AE4D72">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:20:21 UTC</createdTime>
+<comment><![CDATA[Correlativo de inventario]]></comment>
+<generatorID>EE6880D4-C890-D7CE-A1D5-BDF7215ED04E</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<referedAttribute>0EA0E19E-5C03-3B76-B687-14AED6A50EFE</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Cantidad" id="6ED0D312-F3B5-36A5-68B4-483ED25E846B">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:11:43 UTC</createdTime>
+<comment><![CDATA[Cuanto se usa por producto]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>4</dataTypeScale>
+<ownDataTypeParameters>,10,4</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_Unidad" id="D49911BB-9E62-E72D-C1C8-EA864E28DAE9">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:04:30 UTC</createdTime>
+<comment><![CDATA[Correlativo unidad]]></comment>
+<generatorID>68FFD703-2A3E-6221-3776-CA4AF3801B19</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<referedAttribute>4D4DD17D-449A-F7EA-8327-39D752348AB6</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="8A96CE47-6B3E-339F-124E-D7B1611FB6CC" name="Prod_Ingred PK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 04:12:35 UTC</createdTime>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8A24C80E-15F4-E239-8474-354457F36DF1" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>99D480D7-1876-39B7-DA6E-BE680F4ACC6D</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

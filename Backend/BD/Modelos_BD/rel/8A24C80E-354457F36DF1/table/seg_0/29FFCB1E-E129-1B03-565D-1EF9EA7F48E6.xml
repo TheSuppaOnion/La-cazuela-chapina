@@ -1,0 +1,64 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="29FFCB1E-E129-1B03-565D-1EF9EA7F48E6" name="Unidad">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<generatorID>E486BE24-AE71-6AFC-A041-B82435C3B458</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_Unidad" id="51A01D48-129C-E728-FED3-F8AC1FAC255A">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<comment><![CDATA[Correlativo unidad]]></comment>
+<generatorID>4D4DD17D-449A-F7EA-8327-39D752348AB6</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Nombre_unidad" id="8A32C329-33EF-B0B4-A235-82AC33C87531">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<comment><![CDATA[Nombre de la unidad]]></comment>
+<generatorID>1D5CA63B-C30B-432A-8A9B-C56EFFD154BF</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Abreviacion" id="436EED70-953A-3047-D1E4-19A84476E514">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<comment><![CDATA[Abreviación de la unidad]]></comment>
+<generatorID>A823CF8F-5B70-1893-9EBC-27066AAF7321</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0AD6510D-AD83-1EEB-82B4-CAEAB37BCC31" name="Unidad_PK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-31 05:05:04 UTC</createdTime>
+<generatorID>FCB12316-41EA-AE2B-8345-0D12E34C3CBD</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="51A01D48-129C-E728-FED3-F8AC1FAC255A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
