@@ -1,0 +1,35 @@
+name: la_cazuela_chapina_mobile
+description: App móvil Flutter para La Cazuela Chapina
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.5
+  http: ^0.13.6
+  provider: ^6.0.5
+  flutter_dotenv: ^5.0.2
+  shared_preferences: ^2.1.1
+  sqflite: ^2.2.5+1
+  path_provider: ^2.0.15
+  connectivity_plus: ^4.0.1
+  firebase_core: ^2.10.0
+  # Removed firebase_messaging and flutter_local_notifications to avoid Android
+  # Gradle/AGP plugin namespace issues during local development. Re-add them
+  # later if you need push/local notifications and resolve plugin compatibility.
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  # This project is Android-only. Other platform folders (ios/macos/linux/web/windows)
+  # were intentionally removed to simplify local development. If you later need
+  # multi-platform support, re-create those platforms with `flutter create .`.

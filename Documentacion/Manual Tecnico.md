@@ -142,3 +142,116 @@ npm install --production
 npm run build
 # El resultado se coloca típicamente en Frontend/dist (revisa vite.config.js)
 ```
+
+Diagnóstico de rendimiento con React Scan (opcional)
+---------------------------------------------------
+
+Para analizar problemas de rendimiento en la app React puedes usar React Scan (herramienta externa que inspecciona la app en ejecución). A continuación se muestran pasos comprobados en este repositorio para instalar y ejecutar React Scan junto con Playwright/Chromium (driver que usa para la inspección):
+
+1. Asegúrate de que el servidor de desarrollo de la aplicación esté corriendo (Vite por defecto en el puerto 5173):
+
+```powershell
+cd "\Frontend"
+npm run dev
+# deja el servidor corriendo en una terminal
+```
+
+2. Instala `react-scan` en el proyecto (opcional, facilita la ejecución):
+
+```powershell
+npm i react-scan
+```
+
+3. Instala Playwright y descarga Chromium (necesario para que React Scan ejecute las pruebas/inspección):
+
+```powershell
+npm install -D playwright
+npx playwright install chromium
+# Si tu entorno no tiene `npx`, usa la alternativa:
+# npm exec --package=playwright playwright install chromium
+```
+
+4. Ejecuta React Scan apuntando a la URL donde corre tu app (ej.: http://localhost:5173):
+
+```powershell
+# si instalaste react-scan localmente
+npx react-scan http://localhost:5173
+# alternativa con npm exec
+npm exec -- react-scan http://localhost:5173
+```
+
+Notas:
+- React Scan se ejecuta externamente y conecta con la app en la URL indicada; no modifica el código del frontend.
+- Si `npx` no está disponible en tu entorno, `npm exec` es una alternativa compatible.
+- Añadir Playwright como dev-dependency y ejecutar `playwright install chromium` asegura que el driver requerido esté presente.
+
+Estos pasos se verificaron en este proyecto y permiten lanzar React Scan para inspección de rendimiento.
+
+Flutter / Mobile (ejecución local)
+---------------------------------
+
+La carpeta `Mobile/` contiene un scaffold Flutter con `pubspec.yaml` y `lib/main.dart`. A continuación tienes pasos y los comandos exactos que se usaron y funcionaron en este entorno Windows (incluyendo cómo configurar el Android SDK cuando está en una ruta personalizada como `C:\AndroidSDK`).
+
+1. Preparación / SDK
+
+	- Si el Android SDK está en una ruta personalizada (ej. `C:\AndroidSDK`) establece la variable para la sesión y añade `platform-tools` y `emulator` al PATH (temporalmente en PowerShell):
+
+	```powershell
+	$env:ANDROID_SDK_ROOT = 'C:\AndroidSDK'
+	$env:ANDROID_HOME = $env:ANDROID_SDK_ROOT
+	$env:PATH = $env:PATH + ';' + "$env:ANDROID_SDK_ROOT\platform-tools" + ';' + "$env:ANDROID_SDK_ROOT\emulator" + ';' + "$env:ANDROID_SDK_ROOT\cmdline-tools\latest\bin"
+	```
+
+	- Registra el SDK para Flutter (persistente para Flutter config):
+
+	```powershell
+	flutter config --android-sdk "C:\AndroidSDK"
+	```
+
+2. Aceptar licencias Android (si aplicable)
+
+```powershell
+flutter doctor --android-licenses
+# responde 'y' a todas
+```
+
+3. Si el proyecto no tiene plataformas generadas (mensaje: “found, but not supported by this project”), genera los archivos de plataforma sin tocar `lib/`:
+
+```powershell
+cd "\Mobile"
+flutter create .
+```
+
+4. Obtener dependencias y ejecutar en el emulador o dispositivo
+
+```powershell
+flutter pub get
+flutter devices          # lista dispositivos y emuladores disponibles
+flutter run -d emulator-5554   # o flutter run (si sólo hay un emulador/con dispositivo conectado)
+```
+
+5. Comandos útiles de diagnóstico
+
+```powershell
+# ver ruta de adb/emulator
+where.exe adb
+adb --version
+& "C:\AndroidSDK\emulator\emulator.exe" -list-avds
+# reiniciar adb
+adb kill-server
+adb start-server
+adb devices
+flutter doctor -v
+flutter devices
+```
+
+Comandos que se verificaron en esta sesión del proyecto (ejemplos que funcionaron):
+
+```powershell
+# establecer SDK (sesión)
+$env:ANDROID_SDK_ROOT = 'C:\AndroidSDK'
+flutter config --android-sdk "C:\AndroidSDK"
+flutter create .
+flutter pub get
+flutter run
+```
