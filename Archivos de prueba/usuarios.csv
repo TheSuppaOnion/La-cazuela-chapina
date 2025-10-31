@@ -1,0 +1,6 @@
+Nombre_usuario,Correo_usuario,Hash_contraseña,Telefono_usuario,Direccion_usuario,Rol,Fecha_creacion
+"Juan Pérez",juan@example.com,Zz0ZC3WJZ2IdokPwbDUM5ovkJ2F03IhlYCOf6pI9Slo=,555-1234,"Zona 1",cliente,2025-01-01
+"María López",maria@example.com,wN9kA2w2326r1pUfNEKnSjjlzoVW9NV5uD7aU1SV8cw=,555-5678,"Zona 2",cliente,2025-01-02
+"Admin Sistema",admin@lacazuelachapina.com,JAvlGPq9JyTdtvBO6x2llnRI1+gxwIyPqCKAn3THIKk=,555-0000,Centro,admin,2025-01-01
+"Ana García",ana@example.com,Yv8QeqLYrcmBdeq/hqjP8kOHHBHhohQGN2LAIM8YbQU=,555-9012,"Zona 3",cliente,2025-01-03
+"Carlos Rodríguez",carlos@example.com,eWCzlYkZjGhxL34UzIOQVg4A9zX5qOz8Rx1xiocnhfY=,555-3456,"Zona 4",cliente,2025-01-04

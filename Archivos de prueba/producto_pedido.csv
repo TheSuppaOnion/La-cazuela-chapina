@@ -1,0 +1,7 @@
+Pedidos_ID_Pedido,Productos_ID_Producto,Cantidad,Precio_unitario,Personalizaciones
+1,5,1,45.00,null
+2,6,1,120.00,null
+3,7,1,50.00,"{""tamano"":""12oz"",""endulzante"":""panela""}"
+4,3,5,5.00,"{""topping"":""canela""}"
+5,1,5,3.50,"{""picante"":""chapin""}"
+5,4,2,6.00,"{""tamano"":""12oz""}"

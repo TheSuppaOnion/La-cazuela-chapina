@@ -1,0 +1,11 @@
+Inv_ID_Inv,Pedidos_ID_Pedido,Tipo,Cantidad,Costo,Fecha,Razon
+1,1,salida,5.00,12.50,2025-10-01,"Venta pedido 1"
+3,1,salida,2.00,16.00,2025-10-01,"Venta pedido 1"
+5,1,salida,12.00,6.00,2025-10-01,"Venta pedido 1"
+2,2,salida,4.00,10.00,2025-10-02,"Venta pedido 2"
+4,2,salida,3.00,22.50,2025-10-02,"Venta pedido 2"
+6,2,salida,12.00,3.60,2025-10-02,"Venta pedido 2"
+1,3,salida,10.00,25.00,2025-10-03,"Venta pedido 3"
+7,3,salida,5.00,5.00,2025-10-03,"Venta pedido 3"
+1,1,entrada,20.00,50.00,2025-09-30,"Reposición"
+3,1,merma,1.00,8.00,2025-10-01,"Deterioro"

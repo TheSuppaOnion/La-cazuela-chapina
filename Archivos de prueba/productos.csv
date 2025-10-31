@@ -1,0 +1,8 @@
+Nombre_producto,Tipo_producto,Precio_base,Personalizable,Atributos,Disponible
+"Tamal de Pollo",tamal,3.50,S,"{""masa"":""maiz_amarillo"",""relleno"":""pollo"",""envuelta"":""hoja_platano"",""picante"":""suave""}",S
+"Tamal de Cerdo",tamal,3.50,S,"{""masa"":""maiz_blanco"",""relleno"":""cerdo"",""envuelta"":""tusa_maiz"",""picante"":""chapin""}",S
+"Atol de Elote",bebida,5.00,S,"{""tamano"":""12oz"",""tipo"":""atol_elote"",""endulzante"":""panela"",""topping"":""canela""}",S
+"Cacao Batido",bebida,6.00,S,"{""tamano"":""1litro"",""tipo"":""cacao"",""endulzante"":""miel"",""topping"":""ralladura_cacao""}",S
+"Combo Fiesta Patronal",combo,45.00,N,"{""items"":[{""nombre"":""Tamales surtidos"",""cantidad"":12},{""nombre"":""Jarros de atol"",""cantidad"":2}]}",S
+"Combo Madrugada del 24",combo,120.00,N,"{""items"":[{""nombre"":""Tamales surtidos"",""cantidad"":36},{""nombre"":""Jarros de atol"",""cantidad"":4},{""nombre"":""Termo barro"",""cantidad"":1}]}",S
+"Combo Estacional",combo,50.00,S,"{""items"":[{""nombre"":""Fiambre navideño"",""cantidad"":1},{""nombre"":""Tamales elote"",""cantidad"":6}]}",S

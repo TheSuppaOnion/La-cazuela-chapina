@@ -1,0 +1,131 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="571A0A92-4773-6E59-861E-641AF4DC7788" name="Pedidos">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:34:43 UTC</createdTime>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_Pedido" id="2A45DFA8-2DB9-D2B4-25F9-34D72E27FCD8">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:38:51 UTC</createdTime>
+<comment><![CDATA[Correlativo pedido]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="ID_Usuario" id="95825D86-0F1C-3508-2FA4-1A5EC56BEA1F">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:44:52 UTC</createdTime>
+<comment><![CDATA[Correlativo de usuario]]></comment>
+<generatorID>EBE4F9F5-7167-AC96-E93D-E7F3EBE05BF0</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<referedAttribute>039F2FF9-2827-530F-DB86-4410B746CACF</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Precio_total" id="76DFD351-8595-BF4E-86AB-7187CE8591BE">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:39:26 UTC</createdTime>
+<comment><![CDATA[Precio total del pedido]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Estado" id="FFE51995-4307-F644-F596-70F8E970421C">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:40:05 UTC</createdTime>
+<comment><![CDATA[Pendiente, preparando, entregado, cancelado]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fecha_pedido" id="1BAA19D2-54FA-7A30-A6AA-DF3C34F529D8">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:40:39 UTC</createdTime>
+<comment><![CDATA[Fecha de realización del pedido]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fecha_entrega" id="5AFFAD30-EAFA-0656-EEE2-3F6DF73EBC61">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:41:03 UTC</createdTime>
+<comment><![CDATA[Fecha de entrega del pedido]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Notas" id="3EE01A0A-0B05-D4BE-1827-188AD8B721D4">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:41:29 UTC</createdTime>
+<comment><![CDATA[Notas adicionales]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>250</dataTypeSize>
+<ownDataTypeParameters>250,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="03516445-3820-25B5-0A52-E465318C548C" name="Pedidos PK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 18:39:14 UTC</createdTime>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>2A45DFA8-2DB9-D2B4-25F9-34D72E27FCD8</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

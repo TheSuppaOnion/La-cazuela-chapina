@@ -1,0 +1,130 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0CEB6D6B-F2D7-1073-3F89-E41F51774154" name="Pedidos">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<generatorID>571A0A92-4773-6E59-861E-641AF4DC7788</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ID_Pedido" id="F953414B-6A80-0FB7-C754-71C0CF09D7C3">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Correlativo pedido]]></comment>
+<generatorID>2A45DFA8-2DB9-D2B4-25F9-34D72E27FCD8</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Usuarios_ID_Usuario" id="8525DF45-AA8F-5508-2CDC-344C1AD03F70">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Correlativo de usuario]]></comment>
+<generatorID>95825D86-0F1C-3508-2FA4-1A5EC56BEA1F</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B8137816-AA7A-AEBD-1C6F-8387ED1B7EA7" referredColumn="CDEA65C3-146F-93E4-2F5D-C9E2F63AF8EB"/>
+</associations>
+</Column>
+<Column name="Precio_total" id="D07B9619-FC69-371D-657B-94CE121361BC">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Precio total del pedido]]></comment>
+<generatorID>76DFD351-8595-BF4E-86AB-7187CE8591BE</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>2</dataTypeScale>
+<ownDataTypeParameters>,10,2</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Estado" id="F7D5BF7F-277C-90DC-4737-5CC52B673730">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Pendiente, preparando, entregado, cancelado]]></comment>
+<generatorID>FFE51995-4307-F644-F596-70F8E970421C</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fecha_pedido" id="C723979C-1F1F-A370-4A7A-2A165E3A365A">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Fecha de realización del pedido]]></comment>
+<generatorID>1BAA19D2-54FA-7A30-A6AA-DF3C34F529D8</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Fecha_entrega" id="922209AE-B72C-1B82-0B06-3EF568832A26">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Fecha de entrega del pedido]]></comment>
+<generatorID>5AFFAD30-EAFA-0656-EEE2-3F6DF73EBC61</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="Notas" id="CFF65EC4-A9D0-32B8-101B-5A76C089A1F8">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<comment><![CDATA[Notas adicionales]]></comment>
+<generatorID>3EE01A0A-0B05-D4BE-1827-188AD8B721D4</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>250</dataTypeSize>
+<ownDataTypeParameters>250,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C9FD6523-10F1-583D-8426-80A64A83A40A" name="Pedidos_PK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<generatorID>03516445-3820-25B5-0A52-E465318C548C</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F953414B-6A80-0FB7-C754-71C0CF09D7C3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F3A5FB70-5491-A4BC-6E15-A98A79516C11" name="Pedidos_Usuarios_FK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 21:14:52 UTC</createdTime>
+<generatorID>EBE4F9F5-7167-AC96-E93D-E7F3EBE05BF0</generatorID>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8525DF45-AA8F-5508-2CDC-344C1AD03F70"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

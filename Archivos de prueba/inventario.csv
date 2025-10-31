@@ -1,0 +1,8 @@
+Nombre_inventario,Categoria,Unidad,Stock_actual,Costo_unitario,Stock_minimo,Proveedor
+"Masa Maíz Amarillo",materias_primas,kg,50.00,2.50,10.00,"Proveedor A"
+"Masa Maíz Blanco",materias_primas,kg,40.00,2.50,10.00,"Proveedor A"
+"Pollo Deshuesado",materias_primas,kg,30.00,8.00,5.00,"Proveedor B"
+"Cerdo Molido",materias_primas,kg,25.00,7.50,5.00,"Proveedor B"
+"Hoja de Plátano",empaques,unidades,200.00,0.50,20.00,"Proveedor C"
+"Tusa de Maíz",empaques,unidades,150.00,0.30,15.00,"Proveedor C"
+"Combustible Gasolina",combustible,litros,100.00,1.00,20.00,"Proveedor D"

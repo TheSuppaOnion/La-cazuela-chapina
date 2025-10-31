@@ -1,0 +1,8 @@
+Nombre_producto,Tipo_producto,Precio_base,Personalizable,Atributos,Disponible
+"Tamal de Elote",tamal,3.00,S,"{\"masa\":\"maiz_elote\",\"relleno\":\"maiz\",\"envuelta\":\"tusa_maiz\",\"picante\":\"ninguno\"}",S
+"Tamal de Frijol",tamal,3.00,S,"{\"masa\":\"maiz_blanco\",\"relleno\":\"frijol\",\"envuelta\":\"hoja_platano\",\"picante\":\"medio\"}",S
+"Tamal Vegetariano",tamal,3.25,S,"{\"masa\":\"maiz_amarillo\",\"relleno\":\"vegetales\",\"envuelta\":\"hoja_platano\",\"picante\":\"suave\"}",S
+"Ponche de Frutas",bebida,4.50,S,"{\"tamano\":\"16oz\",\"tipo\":\"ponche\",\"endulzante\":\"azucar\",\"topping\":\"canela\"}",S
+"Chocolate Caliente",bebida,5.50,S,"{\"tamano\":\"12oz\",\"tipo\":\"chocolate\",\"endulzante\":\"miel\",\"topping\":\"nuez_moscada\"}",S
+"Combo Desayuno Chapin",combo,60.00,N,"{\"items\":[{\"nombre\":\"Tamal de Pollo\",\"cantidad\":6},{\"nombre\":\"Atol de Elote\",\"cantidad\":2}]}",S
+"Combo Parrillada",combo,95.00,N,"{\"items\":[{\"nombre\":\"Tamales surtidos\",\"cantidad\":20},{\"nombre\":\"Bebida grande\",\"cantidad\":4}]}",S

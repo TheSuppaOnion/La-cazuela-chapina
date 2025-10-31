@@ -1,0 +1,5 @@
+juan@example.com — hash123
+maria@example.com — hash456
+admin@lacazuelachapina.com — admin123
+ana@example.com — hash789
+carlos@example.com — hash012

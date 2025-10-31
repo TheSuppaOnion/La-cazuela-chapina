@@ -1,0 +1,6 @@
+Usuarios_ID_Usuario,Precio_total,Estado,Fecha_pedido,Fecha_entrega,Notas
+1,45.00,entregado,2025-10-01,2025-10-01,"Entrega en zona 1"
+2,120.00,preparando,2025-10-02,2025-10-02,"Pedido grande"
+4,50.00,pendiente,2025-10-03,2025-10-03,"Combo estacional"
+5,25.00,entregado,2025-10-04,2025-10-04,"Pedido pequeño"
+1,30.00,entregado,2025-10-05,2025-10-05,"Repetidor"

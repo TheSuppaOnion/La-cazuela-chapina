@@ -1,0 +1,143 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="6736AE6F-A263-15A8-D31D-C6A689F8F179" name="Usuarios">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:26:58 UTC</createdTime>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="ID_Usuario" id="039F2FF9-2827-530F-DB86-4410B746CACF">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:36:06 UTC</createdTime>
+<comment><![CDATA[Correlativo de usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Nombre_usuario" id="1D999D35-B043-1AED-C1B1-9FAAFF4B42C9">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:37:32 UTC</createdTime>
+<comment><![CDATA[Nombre del usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Correo_usuario" id="F69D0B7D-C25B-3086-817D-92DDB3049E67">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:38:03 UTC</createdTime>
+<comment><![CDATA[Correo del usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Hash_contraseña" id="DB2D3224-980D-DEB4-38B7-1DA852A7C9B5">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:39:11 UTC</createdTime>
+<comment><![CDATA[Hash contraseña encriptada]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255</dataTypeSize>
+<ownDataTypeParameters>255,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Telefono_usuario" id="63B571F6-919B-ED64-57DA-41D2682919EB">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:39:43 UTC</createdTime>
+<comment><![CDATA[Telefono del usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Direccion_usuario" id="568A449D-2DC9-51B7-8BEE-104B1319889D">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:40:44 UTC</createdTime>
+<comment><![CDATA[Dirección del usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>150</dataTypeSize>
+<ownDataTypeParameters>150,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Rol" id="425C3BED-49B8-2A2C-DD35-FA8970BBFDBA">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:41:18 UTC</createdTime>
+<comment><![CDATA[Rol en el sistema]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="Fecha_creacion" id="16E964AE-69AD-A32E-DAB9-D5F8376D0E32">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:41:51 UTC</createdTime>
+<comment><![CDATA[Fecha de registro usuario]]></comment>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="169F5C9F-2801-8C1C-4D91-B688CFA07175" name="Usuarios PK">
+<createdBy>Bismarck Romero</createdBy>
+<createdTime>2025-10-30 01:36:12 UTC</createdTime>
+<ownerDesignName>Modelos_BD</ownerDesignName>
+<engineerTo>
+<item key="8C2A0C9C-9A81-97B5-1905-96C7B56B35B2" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>039F2FF9-2827-530F-DB86-4410B746CACF</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>
